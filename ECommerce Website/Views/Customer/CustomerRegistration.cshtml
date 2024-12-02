@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "CustomerRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    // Layout = null;
+}
+    <div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Register</h2>
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Enter your name" name="customer_name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email" name="customer_email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" class="form-control" placeholder="Enter your password" name="customer_password" required>
+                            </div>
+@*                             <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                            </div> *@
+                            <button type="submit" class="btn btn-primary w-100">Register</button>
+                        </form>
+                        <p class="text-center mt-3">Already have an account? <a href="@Url.Action("customerLogin","customer")">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   

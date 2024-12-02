@@ -1,0 +1,39 @@
+﻿
+@{
+   ViewData["Title"] = "customerLogin";
+   Layout = "~/Views/Shared/_Layout.cshtml";
+    // Layout = null;
+}
+
+
+ <div class="container d-flex justify-content-center align-items-center vh-80">
+     <div class="card shadow-lg p-4 rounded">
+         <h2 class="text-center mb-4">Vok Lagyo</h2>
+         <form method="post">
+             <div class="mb-3">
+                 <label for="username" class="form-label">Username or Email</label>
+                 <input type="text" class="form-control" id="username" name="customerEmail" required placeholder="Enter your email">
+             </div>
+
+             <div class="mb-3">
+                 <label for="password" class="form-label">Password</label>
+                 <input type="password" class="form-control" id="password" name="customerPassword" required placeholder="Enter your password">
+             </div>
+
+             <div class="mb-3 form-check">
+                 <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                 <label class="form-check-label" for="rememberMe">Remember me</label>
+             </div>
+
+             <div class="d-flex justify-content-between">
+                 <button type="submit" class="btn btn-primary">Login</button>
+                <a href="@Url.Action("customerRegistration","customer")" class="btn btn-link">Create an Account</a>
+             </div>
+                <h5 class="text-danger text-center mt-3">@ViewBag.message</h5>
+         </form>
+
+          <div class="text-center mt-3">
+             <a href="#" class="text-decoration-none">Forgot Password?</a>
+         </div> 
+     </div>
+ </div>

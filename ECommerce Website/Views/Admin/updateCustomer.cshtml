@@ -1,0 +1,24 @@
+﻿@model Customer
+<div class="container-fluid px-4">
+    <h2 class="mt-4 text-center text-uppercase" style="letter-spacing:4px">Customer Details</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form method="post" asp-action="UpdateCustomer" enctype="multipart/form-data">
+            <input type="hidden" name="customer_id" value="@Model.customer_id" />
+            <input type="text" name="customer_name" value="@Model.customer_name" class="form-control my-3" />
+            <input type="text" name="customer_phone" value="@Model.customer_phone" class="form-control my-3" />
+            <input type="text" name="customer_email" value="@Model.customer_email" class="form-control my-3" />
+            <input type="password" name="customer_password" value="@Model.customer_password" class="form-control my-3" />
+            <input type="text" name="customer_gender" value="@Model.customer_gender" class="form-control my-3" />
+            <input type="text" name="customer_country" value="@Model.customer_country" class="form-control my-3" />
+            <input type="text" name="customer_city" value="@Model.customer_city" class="form-control my-3" />
+            <input type="text" name="customer_address" value="@Model.customer_address" class="form-control my-3" />
+            <input type="file" name="customer_image" class="form-control my-3" />
+            <input type="submit" value="Update Customer" class="form-control my-3 btn btn-primary" />
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model List<Category>
+
+@* <ul>
+    @foreach (var cat in Model)
+    {
+        <li><a href="">@cat.category_name</a></li>
+    }
+</ul> *@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Vok Lagyoo</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="~/ewebsite/img/favicon.icon" rel="icon" asp-append-version="true">
+
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/website/index.css/index.css" rel="stylesheet" asp-append-version="true">
+</head>
+
+
+<body>
+
+    <ul class="list-group list-group-flush">
+        @foreach (var cat in Model)
+        {
+            <li class="list-group-item">
+                <a href="#" class="text-decoration-none text-dark hover-link">@cat.category_name</a>
+            </li>
+        }
+    </ul>
+</body>
+</html>

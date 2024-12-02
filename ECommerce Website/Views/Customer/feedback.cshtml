@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "feedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-3">
+    <h2 class="py-2">Get In Touch with us</h2>
+<div class="row">
+    <div class="col-md-5">
+        <form method="post" class=" py-4">
+        <input type="text" name="user_name" placeholder="Enter Your Full Name" class="form-control mb-4"/> 
+        <textarea class="form-control mb-2" placeholder="Enter Your Message" name="user_message"></textarea>
+        <input type="submit" class="btn btn-warning btn-block"/>
+        </form>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14062.04762795447!2d83.9977212!3d28.2221383!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399594365cfa00c1%3A0x55d3cdde5726308!2sInfomax%20College%20of%20Information%20Technology%20and%20Management!5e0!3m2!1sen!2snp!4v1732712031983!5m2!1sen!2snp" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        
+</div>
+    <h3>@TempData["message"]</h3>
+    
+</div>

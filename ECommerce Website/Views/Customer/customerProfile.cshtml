@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "customerProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<Customer>
+
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h4 class="text-center">Customer Profile</h4>
+                <form method="post" enctype="multipart/form-data" asp-action="changeProfileImage">
+                    <img src="@("~/customer_images/"+Model[0].customer_image)" asp-append-version="true" alt="Alternate Text" class="img-fluid rounded-circle mb-3 text-center" style="height: 200px; width: 200px;" /><br>
+                    <input type="file" name="customer_image" class="form-control my-3" />
+                    <input type="submit" value="Change Image" class="form-control my-3 btn btn-info" />
+                    <input type="hidden" name="customer_id" value="@Model[0].customer_id" />
+                    <input type="hidden" placeholder="Enter Your Name" name="customer_name" class="form-control mb-3" value="@Model[0].customer_name" />
+                    <input type="hidden" placeholder="Enter Your Phone Number" name="customer_phone" class="form-control mb-3" value="@Model[0].customer_phone" />
+                    <input type="hidden" placeholder="Enter Your Email" name="customer_email" class="form-control mb-3" value="@Model[0].customer_email" />
+                    <input type="hidden" placeholder="Enter Your Password" name="customer_password" class="form-control mb-3" value="@Model[0].customer_password" />
+                    <input type="hidden" name="customer_gender" class="form-control mb-3" value="@Model[0].customer_gender" />
+
+                    <input type="hidden" placeholder="Enter Your Country" name="customer_country" class="form-control mb-3" value="@Model[0].customer_country" />
+                    <input type="hidden" placeholder="Enter Your City" name="customer_city" class="form-control mb-3" value="@Model[0].customer_city" />
+                    <input type="hidden" placeholder="Enter Your Address" name="customer_address" class="form-control mb-3" value="@Model[0].customer_address" />
+
+                </form>
+
+
+                <form method="post" asp-action="updateCustomerProfile">
+                    <input type="hidden" name="customer_id" value="@Model[0].customer_id"/>
+                    <input type="text" placeholder="Enter Your Name" name="customer_name" class="form-control mb-3" value="@Model[0].customer_name"/>
+                    <input type="text" placeholder="Enter Your Phone Number" name="customer_phone" class="form-control mb-3" value="@Model[0].customer_phone" />
+                    <input type="text" placeholder="Enter Your Email" name="customer_email" class="form-control mb-3" value="@Model[0].customer_email" />
+                    <input type="text" placeholder="Enter Your Password" name="customer_password" class="form-control mb-3" value="@Model[0].customer_password" />
+                    <div class="mb-3">
+                        <label></label><br />
+                        <div class="form-check form-check-inline">
+                            <input type="radio"
+                                   name="customer_gender"
+                                   value="Male"
+                                   class="form-check-input"
+                            @if (Model[0].customer_gender == "Male")
+                            {
+                                <text>checked</text>
+                            } />
+                            <label class="form-check-label" for="Male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio"
+                                   name="customer_gender"
+                                   value="Female"
+                                   class="form-check-input"
+                            @if (Model[0].customer_gender == "Female")
+                            {
+                                <text>checked</text>
+                            } />
+                            <label class="form-check-label" for="Female">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio"
+                                   name="customer_gender"
+                                   value="Other"
+                                   class="form-check-input"
+                            @if (Model[0].customer_gender == "Other")
+                            {
+                                <text>checked</text>
+                            } />
+                            <label class="form-check-label" for="Other">Other</label>
+                        </div>
+                    </div>
+
+                    <input type="text" placeholder="Enter Your Country" name="customer_country" class="form-control mb-3" value="@Model[0].customer_country" />
+                    <input type="text" placeholder="Enter Your City" name="customer_city" class="form-control mb-3" value="@Model[0].customer_city" />
+                    <input type="text" placeholder="Enter Your Address" name="customer_address" class="form-control mb-3" value="@Model[0].customer_address" />
+                    <input type="hidden"  name="customer_image" class="form-control mb-3" value="@Model[0].customer_image" />
+                    <input type="submit" class="btn btn-info" value="Update Profile" />
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>

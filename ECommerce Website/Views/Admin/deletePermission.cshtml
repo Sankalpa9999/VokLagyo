@@ -1,0 +1,25 @@
+﻿@model Customer;
+<div class="container-fluid px-4">
+    <h2 class="mt-4 text-center text-uppercase text-danger" style="letter-spacing:4px">Are you sere you want to delete this customer?</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <img src="@("~/customer_images/"+Model.customer_image)" asp-append-version="true" width="250px" height="250px" class="my-3" />
+        <ul class="list-group my-3">
+            <li class="list-group-item">Customer ID : @Model.customer_id</li>
+            <li class="list-group-item">Customer Name : @Model.customer_name</li>
+            <li class="list-group-item">Customer Phone : @Model.customer_phone</li>
+            <li class="list-group-item">Customer Password : @Model.customer_password</li>
+            <li class="list-group-item">Customer Gender : @Model.customer_gender</li>
+            <li class="list-group-item">Customer Country : @Model.customer_country</li>
+            <li class="list-group-item">Customer City : @Model.customer_city</li>
+            <li class="list-group-item">Customer Address : @Model.customer_address</li>
+        </ul>
+        <a href="@Url.Action("deleteCustomer","Admin",new{id=Model.customer_id})" class="btn btn-danger">Delete Customer</a>
+        <a href="@Url.Action("fetchCustomer","Admin")" class="btn btn-warning">Back to list</a>
+    </div>
+
+    <div class="col-md-2"></div>
+</div>

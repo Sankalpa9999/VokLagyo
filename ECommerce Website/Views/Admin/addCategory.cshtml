@@ -1,0 +1,27 @@
+﻿
+<div class="container-fluid px-4">
+    <h2 class="mt-4 text-center text-uppercase" style="letter-spacing:4px">Add New Category</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <form method="post">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+            <input type="text" name="category_name" class="form-control my-3" placeholder="Enter Category name" />
+           
+            <input type="submit" value="Add Category" class="form-control my-3 btn btn-primary" />
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>

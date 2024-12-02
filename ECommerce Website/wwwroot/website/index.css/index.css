@@ -1,0 +1,9 @@
+﻿.hover-link {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+    .hover-link:hover {
+        color: #007bff; /* Change text color on hover */
+        background-color: #f8f9fa; /* Add light background on hover */
+        text-decoration: underline; /* Optional: underline on hover */
+    }

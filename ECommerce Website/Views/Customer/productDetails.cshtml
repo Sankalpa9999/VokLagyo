@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Product>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5 display-4 text-uppercase"><strong>Product Details</strong></h1>
+    <div class="row">
+        @foreach (var pro in Model)
+        {
+            <div class="row mb-5 p-4 rounded shadow-lg bg-white align-items-center">
+                <!-- Image Column -->
+                <div class="col-md-5 text-center">
+                    <img class="img-fluid rounded" style="max-height: 350px; object-fit: cover;" src="@("~/product_images/" + pro.product_image)" alt="Product Image" asp-append-version="true">
+                </div>
+
+                <!-- Spacer Column -->
+                <div class="col-md-1"></div>
+
+                <!-- Product Details Column -->
+                <div class="col-md-6">
+                    <h2 class="text-dark mb-3"><strong>@pro.product_name</strong></h2>
+                    <h4 class="text-danger mb-4">Price: Rs. <span class="fw-bold">@pro.product_price</span></h4>
+                    <p class="text-muted fs-5"><strong>Description:</strong> @pro.product_description</p>
+                    <div class="mt-4">
+                       @*  <a href="#" class="btn btn-outline-primary btn-lg me-3 px-4 py-2"><i class="fas fa-cart-plus"></i> Add To Cart</a> *@
+
+@*                         <a href="@Url.Action("productDetails","Customer",new{id=pro.product_id})" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a> *@
+                        <form method="post" asp-action="AddToCart">
+                            <input type="hidden" class="btn btn-sm text-dark p-0" name="prod_id" value="@pro.product_id" />
+                            <input class="btn btn-info btn-lg px-4 py-2 mt-2" type="submit" value="Add To Cart"@*  <i class="fas fa-shopping-cart text-primary mr-1"></i> *@ />
+                        </form>
+                         <a href="#" class="btn btn-warning btn-lg px-4 py-2 mt-2"><i class="fas fa-shopping-bag"></i> Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

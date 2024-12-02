@@ -1,0 +1,30 @@
+﻿@model List<Feedback>
+<div class="container-fluid px-4">
+    <h2 class="mt-4 text-center text-uppercase" style="letter-spacing:4px">All Feedback</h2>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped text-center mt-3">
+            <thead>
+                <tr>
+
+                    <th>User Name</th>
+                    <th>User Message</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var feedback in Model)
+                {
+                    <tr>
+                        <td>@feedback.user_name</td>
+                        <td>@feedback.user_message</td>
+                        <td>
+                            <a href="@Url.Action("deletePermissionFeedback","Admin",new{id=feedback.feedback_id})" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

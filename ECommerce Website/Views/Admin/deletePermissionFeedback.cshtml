@@ -1,0 +1,20 @@
+﻿@model Feedback;
+<div class="container-fluid px-4">
+    <h2 class="mt-4 text-center text-uppercase text-danger" style="letter-spacing:4px">Are you sere you want to delete this Feedback?</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <ul class="list-group my-3">
+            <li class="list-group-item">Product Id : @Model.feedback_id</li>
+            <li class="list-group-item">Product Name : @Model.user_name</li>
+            <li class="list-group-item">Product Name : @Model.user_message</li>
+
+        </ul>
+        <a href="@Url.Action("deleteFeedback","Admin",new{id=Model.feedback_id})" class="btn btn-danger">Delete Feedback</a>
+        <a href="@Url.Action("fetchFeedback","Admin")" class="btn btn-warning">Back to list</a>
+    </div>
+
+    <div class="col-md-2"></div>
+</div>
