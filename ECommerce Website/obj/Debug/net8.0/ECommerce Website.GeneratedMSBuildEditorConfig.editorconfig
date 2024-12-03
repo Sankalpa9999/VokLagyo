@@ -98,6 +98,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/.net/ECommerce Website/ECommerce Website/Views/Admin/updateCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cdXBkYXRlQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/.net/ECommerce Website/ECommerce Website/Views/Admin/updateCategory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cdXBkYXRlQ2F0ZWdvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -128,6 +132,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/.net/ECommerce Website/ECommerce Website/Views/Customer/fetchAllProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcZmV0Y2hBbGxQcm9kdWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/.net/ECommerce Website/ECommerce Website/Views/Customer/fetchCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJcZmV0Y2hDYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/.net/ECommerce Website/ECommerce Website/Views/Customer/fetchCategoryList.cshtml]

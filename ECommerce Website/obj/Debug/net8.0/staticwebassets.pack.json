@@ -49,6 +49,18 @@
       "PackagePath": "staticwebassets\\css\\styles.css"
     },
     {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\118cff49-0924-45f3-a505-38b003536890.jpg",
+      "PackagePath": "staticwebassets\\customer_images\\118cff49-0924-45f3-a505-38b003536890.jpg"
+    },
+    {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\7a4bef75-6fe6-4033-92f2-ce60dbd2fa4d.jpg",
+      "PackagePath": "staticwebassets\\customer_images\\7a4bef75-6fe6-4033-92f2-ce60dbd2fa4d.jpg"
+    },
+    {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\92ea4845-d3aa-4411-a39c-4df7810c7a89.jpg",
+      "PackagePath": "staticwebassets\\customer_images\\92ea4845-d3aa-4411-a39c-4df7810c7a89.jpg"
+    },
+    {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\ERD.png",
       "PackagePath": "staticwebassets\\customer_images\\ERD.png"
     },
@@ -75,6 +87,10 @@
     {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\aa.png",
       "PackagePath": "staticwebassets\\customer_images\\aa.png"
+    },
+    {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\ac859273-8138-4c2b-b313-45dd4398d801.jpg",
+      "PackagePath": "staticwebassets\\customer_images\\ac859273-8138-4c2b-b313-45dd4398d801.jpg"
     },
     {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\ewebsite\\css\\style.css",

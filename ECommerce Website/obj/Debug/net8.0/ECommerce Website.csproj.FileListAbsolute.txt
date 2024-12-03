@@ -256,3 +256,4 @@ D:\.net\ECommerce Website\ECommerce Website\bin\Debug\net8.0\runtimes\win\lib\ne
 D:\.net\ECommerce Website\ECommerce Website\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 D:\.net\ECommerce Website\ECommerce Website\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\.net\ECommerce Website\ECommerce Website\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+D:\.net\ECommerce Website\ECommerce Website\obj\Debug\net8.0\ECommerce Website.sourcelink.json

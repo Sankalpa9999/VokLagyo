@@ -393,8 +393,8 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult fetchcart()
         {
-            
-            return View(_context.tbl_cart.ToList());
+            var cart = _context.tbl_cart.Include(c=>c.products).Include(c=>c.customers).ToList();
+            return View(cart);
         }
         public ActionResult deletePermissionCart(int id)
         {
@@ -405,6 +405,19 @@ namespace ECommerce_Website.Controllers
         {
             var cart = _context.tbl_cart.Find(id);
             _context.tbl_cart.Remove(cart);
+            _context.SaveChanges();
+            return RedirectToAction("fetchCart");
+        }
+        public IActionResult updateCart(int id)
+        {
+            var cart = _context.tbl_cart.Find(id);
+            return View(cart);
+        }
+        [HttpPost]
+        public IActionResult updateCart(int cart_status, Cart cart)
+        {
+            cart.cart_status = cart_status;
+            _context.tbl_cart.Update(cart);
             _context.SaveChanges();
             return RedirectToAction("fetchCart");
         }

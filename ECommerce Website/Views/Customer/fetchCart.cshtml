@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "fetchCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<Cart>
+
+
+<div class="container mt-3">
+    <h2 class="text-info text text-center"> Your Carts</h2>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>Cart Id</th>
+                    <th>Food Name</th>
+                    <th>Quantity</th>
+                        <th>Price</th>
+                    <th>Option</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                    @foreach (var cart in Model)
+                    {
+                        <tr>
+                            <td>@cart.cart_id</td>
+                            <td>@cart.products.product_name</td>
+                            <td>@cart.product_quantity</td>
+                            <td>@cart.products.product_price</td>
+                            <td>
+                                <a href="@Url.Action("removeProduct","customer",new{id = cart.cart_id})" class="btn btn-danger">Remove</a>
+                                <a href="@Url.Action("checkoutProduct","customer",new{id = cart.cart_id})" class="btn btn-warning">Checkout</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
