@@ -16,6 +16,8 @@ namespace ECommerce_Website.Models
         public DbSet<Feedback> tbl_feedback {  get; set; }
         public DbSet<Faqs> tbl_faqs {  get; set; }
 
+        public DbSet<Order> tbl_order { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasOne(p => p.Category).WithMany(c => c.Product).HasForeignKey(p => p.cat_id);

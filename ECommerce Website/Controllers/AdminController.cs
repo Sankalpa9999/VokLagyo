@@ -17,7 +17,7 @@ namespace ECommerce_Website.Controllers
         public IActionResult Index()
         {
             string admin_session = HttpContext.Session.GetString("admin_session");
-            if(
+            if (
                 admin_session != null)
             {
                 return View();
@@ -26,7 +26,7 @@ namespace ECommerce_Website.Controllers
             {
                 return RedirectToAction("login");
             }
-            
+
         }
         public IActionResult Login()
         {
@@ -35,7 +35,7 @@ namespace ECommerce_Website.Controllers
         [HttpPost]
         public IActionResult Login(string adminEmail, string adminPassword)
         {
-            var row = _context.tbl_admin.FirstOrDefault(a=>a.admin_email == adminEmail);
+            var row = _context.tbl_admin.FirstOrDefault(a => a.admin_email == adminEmail);
             if (row != null && row.admin_password == adminPassword)
             {
                 HttpContext.Session.SetString("admin_session", row.admin_id.ToString());
@@ -46,7 +46,7 @@ namespace ECommerce_Website.Controllers
                 ViewBag.message = "Incorrect Username or Password";
                 return View();
             }
-            
+
         }
         public IActionResult Logout()
         {
@@ -200,12 +200,12 @@ namespace ECommerce_Website.Controllers
         }
 
         public IActionResult customerDetails(int id)
-        {  
+        {
             return View(_context.tbl_customer.FirstOrDefault(c => c.customer_id == id));
         }
-        
+
         public IActionResult updateCustomer(int id)
-        {  
+        {
             return View(_context.tbl_customer.Find(id));
         }
         //[HttpPost]
@@ -349,11 +349,11 @@ namespace ECommerce_Website.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult addProduct(Product prod,IFormFile product_image)
+        public IActionResult addProduct(Product prod, IFormFile product_image)
         {
             string imageName = Path.GetFileName(product_image.FileName);
-            string imagePath = Path.Combine(_env.WebRootPath,"product_images",imageName);
-            FileStream fs = new FileStream(imagePath,FileMode.Create);
+            string imagePath = Path.Combine(_env.WebRootPath, "product_images", imageName);
+            FileStream fs = new FileStream(imagePath, FileMode.Create);
             product_image.CopyTo(fs);
             prod.product_image = imageName;
             _context.tbl_product.Add(prod);
@@ -363,7 +363,7 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult productDetails(int id)
         {
-            return View(_context.tbl_product.Include(p=>p.Category).FirstOrDefault(p=>p.product_id==id));
+            return View(_context.tbl_product.Include(p => p.Category).FirstOrDefault(p => p.product_id == id));
         }
 
         public ActionResult deletePermissionProduct(int id)
@@ -412,7 +412,7 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult fetchFeedback()
         {
-            
+
             return View(_context.tbl_feedback.ToList());
         }
 
@@ -430,7 +430,7 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult fetchcart()
         {
-            var cart = _context.tbl_cart.Include(c=>c.products).Include(c=>c.customers).ToList();
+            var cart = _context.tbl_cart.Include(c => c.products).Include(c => c.customers).ToList();
             return View(cart);
         }
         public ActionResult deletePermissionCart(int id)
@@ -461,11 +461,12 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult ViewOrders()
         {
-            // Retrieve pending orders only
-            var pendingOrders = _context.tbl_cart
-                .Include(c => c.products)
-                .Include(c => c.customers)
-                .Where(c => c.cart_status == 0) // Only fetch pending orders
+            // Retrieve pending orders only from the 'Order' table
+            var pendingOrders = _context.tbl_order
+                .Include(o => o.cart) // Include the related cart
+                .ThenInclude(c => c.products) // Include the products in the cart
+                .Include(o => o.cart.customers) // Include the related customer
+                .Where(o => o.order_status == 0) // Only fetch pending orders
                 .ToList();
 
             return View(pendingOrders);
@@ -475,15 +476,22 @@ namespace ECommerce_Website.Controllers
         // Mark an order as completed
         public IActionResult CompleteOrder(int id)
         {
-            var order = _context.tbl_cart.FirstOrDefault(c => c.cart_id == id);
+            var order = _context.tbl_order.FirstOrDefault(c => c.cart_id == id);
 
             if (order == null)
             {
                 return NotFound("Order not found.");
             }
 
-            // Mark as completed
-            order.cart_status = 1;
+            // Mark the order and associated cart as completed
+            order.order_status = 1;
+
+            var cart = _context.tbl_cart.FirstOrDefault(c => c.cart_id == order.cart_id);
+            if (cart != null)
+            {
+                cart.cart_status = 1; // Mark the cart as completed
+            }
+
             _context.SaveChanges();
 
             TempData["Message"] = "Order marked as completed.";
@@ -493,10 +501,10 @@ namespace ECommerce_Website.Controllers
         // Remove an order
         public IActionResult DeleteOrder(int id)
         {
-            var order = _context.tbl_cart.Find(id);
+            var order = _context.tbl_order.Find(id);
             if (order == null) return NotFound("Order not found.");
 
-            _context.tbl_cart.Remove(order);
+            _context.tbl_order.Remove(order);
             _context.SaveChanges();
 
             TempData["Message"] = "Order has been deleted.";
@@ -505,15 +513,16 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult OrderHistory()
         {
-            // Retrieve completed orders
+            // Retrieve completed carts and their related details
             var completedOrders = _context.tbl_cart
                 .Include(c => c.products)
                 .Include(c => c.customers)
-                .Where(c => c.cart_status == 1) // Only fetch completed orders
+                .Where(c => c.cart_status == 1) // Only fetch completed carts
                 .ToList();
 
             return View(completedOrders);
         }
+
     }
 }
 

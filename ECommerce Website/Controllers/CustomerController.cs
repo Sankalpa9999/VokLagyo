@@ -210,9 +210,9 @@ namespace ECommerce_Website.Controllers
 
 
 
-        public IActionResult checkoutProduct(int id)
+        public IActionResult CheckoutProduct(int id)
         {
-            // Retrieve the cart item with related product and customer details
+            // Retrieve the cart item along with its related product and customer details
             var cartItem = _context.tbl_cart
                 .Include(c => c.products)
                 .Include(c => c.customers)
@@ -227,14 +227,38 @@ namespace ECommerce_Website.Controllers
             return View(cartItem);
         }
 
-        [HttpPost]
-        public IActionResult confirmCheckout()
-        {
-            // Example logic: Display a confirmation message
-            TempData["Message"] = "Your checkout has been successfully confirmed!";
-            TempData["PaymentMethod"] = "You have chosen Cash on Delivery as your payment method. Our delivery team will contact you soon to finalize the details.";
 
-            // Redirect to a GET action that renders the view
+        [HttpPost]
+        public IActionResult ConfirmCheckout(int cart_id, string paymentMethod)
+        {
+            // Retrieve the cart item
+            var cartItem = _context.tbl_cart
+                .Include(c => c.products)
+                .Include(c => c.customers)
+                .FirstOrDefault(c => c.cart_id == cart_id);
+
+            if (cartItem == null)
+            {
+                return NotFound("Cart item not found.");
+            }
+
+            // Create an order for the cart item
+            var order = new Order
+            {
+                cart_id = cartItem.cart_id,
+                order_status = 0, // Pending
+            };
+
+            // Add the order to the database
+            _context.tbl_order.Add(order);
+            _context.SaveChanges();
+
+            // Confirmation message and payment details
+            TempData["Message"] = "Your checkout has been successfully confirmed!";
+            TempData["PaymentMethod"] = paymentMethod == "COD"
+                ? "You have chosen Cash on Delivery as your payment method. Our delivery team will contact you soon."
+                : "You have selected Online Payment. Please complete the payment process.";
+
             return View();
         }
 
