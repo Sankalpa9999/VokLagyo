@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "OrderHistory";
+
+}
+
+@model List<ECommerce_Website.Models.Cart>
+
+@{
+    ViewData["Title"] = "Order History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h3 class="text-center my-3">Completed Orders</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.cart_id</td>
+                    <td>@order.products.product_name</td>
+                    <td>@order.customers.customer_name</td>
+                    <td>@order.customers.customer_email</td>
+                    <td>@order.customers.customer_address</td>
+                    <td>@order.product_quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

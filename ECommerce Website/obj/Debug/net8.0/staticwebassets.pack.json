@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ECommerce Website.bundle.scp.css"
     },
     {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\admin_image\\90098350-2e3f-419c-86f2-7f4263554392.jpg",
+      "PackagePath": "staticwebassets\\admin_image\\90098350-2e3f-419c-86f2-7f4263554392.jpg"
+    },
+    {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\admin_image\\ERD.png",
       "PackagePath": "staticwebassets\\admin_image\\ERD.png"
     },
@@ -885,6 +889,10 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\3e8e9352-cdb0-4ad6-9995-33c1cdac8722.jpg",
+      "PackagePath": "staticwebassets\\product_images\\3e8e9352-cdb0-4ad6-9995-33c1cdac8722.jpg"
+    },
+    {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\ERD.png",
       "PackagePath": "staticwebassets\\product_images\\ERD.png"
     },
@@ -925,6 +933,10 @@
       "PackagePath": "staticwebassets\\product_images\\apple.webp"
     },
     {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\banana.jpg",
+      "PackagePath": "staticwebassets\\product_images\\banana.jpg"
+    },
+    {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\bayern.jpg",
       "PackagePath": "staticwebassets\\product_images\\bayern.jpg"
     },
@@ -951,6 +963,10 @@
     {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\vegmomo.png",
       "PackagePath": "staticwebassets\\product_images\\vegmomo.png"
+    },
+    {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\vegpizza.jpg",
+      "PackagePath": "staticwebassets\\product_images\\vegpizza.jpg"
     },
     {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\vegrice.jpg",

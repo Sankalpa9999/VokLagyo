@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VvBs+H79byOXogEyjmThN/C2Hfc4kBF5u8i5alRdi4o=",
+  "Hash": "HOFraEf86kiLqe7YvrtJzy2HxmWxajPlb9uQaQ/0DDU=",
   "Source": "ECommerce Website",
   "BasePath": "_content/ECommerce Website",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\.net\\ECommerce Website\\ECommerce Website\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ECommerce Website.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\admin_image\\90098350-2e3f-419c-86f2-7f4263554392.jpg",
+      "SourceId": "ECommerce Website",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\",
+      "BasePath": "_content/ECommerce Website",
+      "RelativePath": "admin_image/90098350-2e3f-419c-86f2-7f4263554392.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\admin_image\\90098350-2e3f-419c-86f2-7f4263554392.jpg"
     },
     {
       "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\admin_image\\ERD.png",
@@ -4235,6 +4254,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
+      "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\3e8e9352-cdb0-4ad6-9995-33c1cdac8722.jpg",
+      "SourceId": "ECommerce Website",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\",
+      "BasePath": "_content/ECommerce Website",
+      "RelativePath": "product_images/3e8e9352-cdb0-4ad6-9995-33c1cdac8722.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_images\\3e8e9352-cdb0-4ad6-9995-33c1cdac8722.jpg"
+    },
+    {
       "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\apple.webp",
       "SourceId": "ECommerce Website",
       "SourceType": "Discovered",
@@ -4252,6 +4290,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\product_images\\apple.webp"
+    },
+    {
+      "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\banana.jpg",
+      "SourceId": "ECommerce Website",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\",
+      "BasePath": "_content/ECommerce Website",
+      "RelativePath": "product_images/banana.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_images\\banana.jpg"
     },
     {
       "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\bayern.jpg",
@@ -4556,6 +4613,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\product_images\\vegmomo.png"
+    },
+    {
+      "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\vegpizza.jpg",
+      "SourceId": "ECommerce Website",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\",
+      "BasePath": "_content/ECommerce Website",
+      "RelativePath": "product_images/vegpizza.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_images\\vegpizza.jpg"
     },
     {
       "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\vegrice.jpg",

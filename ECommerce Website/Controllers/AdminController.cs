@@ -1,6 +1,7 @@
 ﻿using ECommerce_Website.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace ECommerce_Website.Controllers
 {
@@ -70,24 +71,60 @@ namespace ECommerce_Website.Controllers
             var row = _context.tbl_admin.Where(a => a.admin_id == parsedAdminId).ToList();
             return View(row);
         }
+
         [HttpPost]
-        public IActionResult Profile(Admin admin)
+        public IActionResult Profile(Admin updatedAdmin)
         {
-            _context.tbl_admin.Update(admin);
-            _context.SaveChanges();
+            // Fetch the existing admin record
+            var existingAdmin = _context.tbl_admin.FirstOrDefault(a => a.admin_id == updatedAdmin.admin_id);
+
+            if (existingAdmin != null)
+            {
+                // Update only the fields that are part of the form
+                existingAdmin.admin_name = updatedAdmin.admin_name;
+                existingAdmin.admin_email = updatedAdmin.admin_email;
+                existingAdmin.admin_password = updatedAdmin.admin_password;
+
+                // Save the changes
+                _context.SaveChanges();
+
+                TempData["Message"] = "Profile updated successfully!";
+            }
+            else
+            {
+                TempData["Error"] = "Admin not found!";
+            }
+
             return RedirectToAction("Profile");
         }
+
         [HttpPost]
-        public IActionResult ChangeProfileImage(IFormFile admin_image, Admin admin)
+        public IActionResult ChangeProfileImage(IFormFile admin_image, int admin_id)
         {
-                string ImagePath = Path.Combine(_env.WebRootPath, "admin_image",admin_image.FileName);
-                FileStream fs = new FileStream(ImagePath,FileMode.Create);
-                admin_image.CopyTo(fs);
-                admin.admin_image = admin_image.FileName;
-                _context.tbl_admin.Update(admin);
+            var existingAdmin = _context.tbl_admin.FirstOrDefault(a => a.admin_id == admin_id);
+
+            if (existingAdmin != null && admin_image != null)
+            {
+                string imagePath = Path.Combine(_env.WebRootPath, "admin_image", admin_image.FileName);
+                using (var fileStream = new FileStream(imagePath, FileMode.Create))
+                {
+                    admin_image.CopyTo(fileStream);
+                }
+
+                existingAdmin.admin_image = admin_image.FileName;
+
                 _context.SaveChanges();
-                return RedirectToAction("Profile");
+
+                TempData["Message"] = "Profile image updated successfully!";
+            }
+            else
+            {
+                TempData["Error"] = "Error updating profile image!";
+            }
+
+            return RedirectToAction("Profile");
         }
+
 
 
 
@@ -421,5 +458,62 @@ namespace ECommerce_Website.Controllers
             _context.SaveChanges();
             return RedirectToAction("fetchCart");
         }
+
+        public IActionResult ViewOrders()
+        {
+            // Retrieve pending orders only
+            var pendingOrders = _context.tbl_cart
+                .Include(c => c.products)
+                .Include(c => c.customers)
+                .Where(c => c.cart_status == 0) // Only fetch pending orders
+                .ToList();
+
+            return View(pendingOrders);
+        }
+
+
+        // Mark an order as completed
+        public IActionResult CompleteOrder(int id)
+        {
+            var order = _context.tbl_cart.FirstOrDefault(c => c.cart_id == id);
+
+            if (order == null)
+            {
+                return NotFound("Order not found.");
+            }
+
+            // Mark as completed
+            order.cart_status = 1;
+            _context.SaveChanges();
+
+            TempData["Message"] = "Order marked as completed.";
+            return RedirectToAction("ViewOrders");
+        }
+
+        // Remove an order
+        public IActionResult DeleteOrder(int id)
+        {
+            var order = _context.tbl_cart.Find(id);
+            if (order == null) return NotFound("Order not found.");
+
+            _context.tbl_cart.Remove(order);
+            _context.SaveChanges();
+
+            TempData["Message"] = "Order has been deleted.";
+            return RedirectToAction("ViewOrders");
+        }
+
+        public IActionResult OrderHistory()
+        {
+            // Retrieve completed orders
+            var completedOrders = _context.tbl_cart
+                .Include(c => c.products)
+                .Include(c => c.customers)
+                .Where(c => c.cart_status == 1) // Only fetch completed orders
+                .ToList();
+
+            return View(completedOrders);
+        }
     }
 }
+

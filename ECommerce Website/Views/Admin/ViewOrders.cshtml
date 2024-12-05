@@ -1,0 +1,49 @@
+﻿@model List<ECommerce_Website.Models.Cart>
+@{
+    ViewData["Title"] = "ViewOrders";
+}
+
+
+
+<div class="container">
+    <h3 class="text-center my-3">Pending Orders</h3>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+    <h1>     <a href="@Url.Action("OrderHistory","Admin")"> Order History</a> </h1>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.cart_id</td>
+                    <td>@order.products.product_name</td>
+                    <td>@order.customers.customer_name</td>
+                    <td>@order.customers.customer_email</td>
+                    <td>@order.customers.customer_address</td>
+                    <td>@order.product_quantity</td>
+                    <td>
+                        <a href="@Url.Action("CompleteOrder", "Admin", new { id = order.cart_id })" class="btn btn-success btn-sm">Mark as Completed</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+</div>

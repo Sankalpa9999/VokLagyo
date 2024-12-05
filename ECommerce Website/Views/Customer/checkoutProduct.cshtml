@@ -1,0 +1,51 @@
+﻿@model ECommerce_Website.Models.Cart
+
+@{
+    ViewData["Title"] = "Checkout Product";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h3 class="text-center my-3">Checkout</h3>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Product Details</h5>
+            <p><strong>Product Name:</strong> @Model.products.product_name</p>
+            <p><strong>Price:</strong> $@Model.products.product_price</p>
+            <p><strong>Quantity:</strong> @Model.product_quantity</p>
+            @*             <p><strong>Total:</strong> $@(Model.products.product_price * Model.product_quantity)</p> *@
+
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="card-title">Customer Details</h5>
+            <p><strong>Name:</strong> @Model.customers.customer_name</p>
+            <p><strong>Email:</strong> @Model.customers.customer_email</p>
+            <p><strong>Address:</strong> @Model.customers.customer_address</p>
+        </div>
+    </div>
+
+    <form method="post" asp-action="confirmCheckout" asp-controller="Customer">
+        <input type="hidden" name="cart_id" value="@Model.cart_id" />
+        <input type="submit" class="btn btn-success mt-3" value="Cash on Delivery" />
+        <a href="@Url.Action("onlinePayment", "customer")" class="btn btn-success mt-3">Online Payment</a>
+    </form>
+</div> 
+
+
+@* 
+<h2>Checkout</h2>
+
+<div>
+    <h4>Product: @Model.products.product_name</h4>
+    <p>Quantity: @Model.product_quantity</p>
+    <p>Price: @Model.products.product_price</p>
+    <p>Customer: @Model.customers.customer_name</p>
+</div>
+
+<form asp-action="confirmCheckout" method="post">
+    <button type="submit" class="btn btn-success">Confirm Checkout</button>
+</form> *@

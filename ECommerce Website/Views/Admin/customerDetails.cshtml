@@ -1,5 +1,5 @@
 ﻿@model Customer;
-<div class="container-fluid px-4">
+@* <div class="container-fluid px-4">
     <h2 class="mt-4 text-center text-uppercase" style="letter-spacing:4px">Customer Details</h2>
 </div>
 
@@ -20,4 +20,45 @@
         </div>
 
     <div class="col-md-2"></div>
+</div> *@
+
+
+
+<div class="container-xl px-4 mt-4">
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <!-- Profile Picture Section -->
+        <div class="col-xl-4">
+            <div class="card mb-4">
+                <div class="card-header text-center">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image -->
+                    <img class="img-account-profile rounded-circle mb-3"
+                         src="@("~/customer_images/"+Model.customer_image)" asp-append-version="true"
+                         alt="Profile Picture" 
+                         style="width: 250px; height: 250px;">
+                    <div class="small font-italic text-muted mb-4"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Details Section -->
+        <div class="col-xl-8">
+            <div class="card mb-4">
+                <div class="card-header">Customer Details</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Customer ID : @Model.customer_id</li>
+                        <li class="list-group-item">Customer Name : @Model.customer_name</li>
+                        <li class="list-group-item">Customer Phone : @Model.customer_phone</li>
+                        <li class="list-group-item">Customer Password : @Model.customer_password</li>
+                        <li class="list-group-item">Customer Gender : @Model.customer_gender</li>
+                        <li class="list-group-item">Customer Country : @Model.customer_country</li>
+                        <li class="list-group-item">Customer City : @Model.customer_city</li>
+                        <li class="list-group-item">Customer Address : @Model.customer_address</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

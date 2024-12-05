@@ -208,6 +208,41 @@ namespace ECommerce_Website.Controllers
         }
 
 
+
+
+        public IActionResult checkoutProduct(int id)
+        {
+            // Retrieve the cart item with related product and customer details
+            var cartItem = _context.tbl_cart
+                .Include(c => c.products)
+                .Include(c => c.customers)
+                .FirstOrDefault(c => c.cart_id == id);
+
+            if (cartItem == null)
+            {
+                return NotFound("Cart item not found.");
+            }
+
+            // Pass the cart item to the view
+            return View(cartItem);
+        }
+
+        [HttpPost]
+        public IActionResult confirmCheckout()
+        {
+            // Example logic: Display a confirmation message
+            TempData["Message"] = "Your checkout has been successfully confirmed!";
+            TempData["PaymentMethod"] = "You have chosen Cash on Delivery as your payment method. Our delivery team will contact you soon to finalize the details.";
+
+            // Redirect to a GET action that renders the view
+            return View();
+        }
+
+        public IActionResult onlinePayment()
+        {
+            return View();
+        }
+
     }
 
 

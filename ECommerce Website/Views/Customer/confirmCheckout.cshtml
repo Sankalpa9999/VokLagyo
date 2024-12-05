@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Confirm Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
+
+@if (TempData["PaymentMethod"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["PaymentMethod"]
+    </div>
+}
+
+<h2>Thank you for your order!</h2>
+
+
+
+
+
