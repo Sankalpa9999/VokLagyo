@@ -11,6 +11,7 @@ namespace ECommerce_Website.Models
         public int cust_id { get; set; }
         public int product_quantity { get; set; }
         public int cart_status { get; set; }
+        public bool is_checked_out { get; set; }
 
         [ForeignKey("prod_id")]
         public Product products { get; set; }

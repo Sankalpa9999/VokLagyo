@@ -1,0 +1,37 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "Order History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-3">
+    <h2 class="text-info text-center">Your Order History</h2>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+@*                 <th>Payment Method</th> *@
+                <th>Order Status</th>
+@*                 <th>Order Date</th> *@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.order_id</td>
+                    <td>@order.cart.products.product_name</td>
+                    <td>@order.cart.product_quantity</td>
+                    <td>@order.cart.products.product_price</td>
+@*                     <td>@(order.payment_method == "COD" ? "Cash on Delivery" : "Online Payment")</td> *@
+                    <td>@(order.order_status == 0 ? "Pending" : "Completed")</td>
+@*                     <td>@order.order_date.ToString("yyyy-MM-dd")</td> *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

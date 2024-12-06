@@ -1,6 +1,9 @@
 ﻿using ECommerce_Website.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace ECommerce_Website.Controllers
 {
@@ -21,6 +24,8 @@ namespace ECommerce_Website.Controllers
 
             List<Product> products = _context.tbl_product.ToList();
             ViewData["product"] = products;
+
+            
 
             ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View();
@@ -92,17 +97,58 @@ namespace ECommerce_Website.Controllers
             _context.SaveChanges();
             return RedirectToAction("customerProfile");
         }
-        public IActionResult changeProfileImage(Customer customer, IFormFile customer_image)
+        /*        public IActionResult changeProfileImage(Customer customer, IFormFile customer_image)
+                {
+                    string ImagePath = Path.Combine(_env.WebRootPath, "customer_images", customer_image.FileName);
+                    FileStream fs = new FileStream(ImagePath, FileMode.Create);
+                    customer_image.CopyTo(fs);
+                    customer.customer_image = customer_image.FileName;
+                    _context.tbl_customer.Update(customer);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("customerProfile");
+                }*/
+
+
+        public IActionResult ChangeProfileImage(int customer_id, IFormFile customer_image)
         {
-            string ImagePath = Path.Combine(_env.WebRootPath, "customer_images", customer_image.FileName);
-            FileStream fs = new FileStream(ImagePath, FileMode.Create);
-            customer_image.CopyTo(fs);
-            customer.customer_image = customer_image.FileName;
-            _context.tbl_customer.Update(customer);
+            // Check if the image is null or empty
+            if (customer_image == null || customer_image.Length == 0)
+            {
+                ModelState.AddModelError("", "Please upload a valid image.");
+                return RedirectToAction("CustomerProfile");  // Redirect back to the profile page if the image is invalid
+            }
+
+            // Fetch the existing customer from the database
+            var existingCustomer = _context.tbl_customer.FirstOrDefault(c => c.customer_id == customer_id);
+            if (existingCustomer == null)
+            {
+                return NotFound("Customer not found.");
+            }
+
+            // Save the image to the server
+            string imageDirectory = Path.Combine(_env.WebRootPath, "customer_images");
+            if (!Directory.Exists(imageDirectory))
+            {
+                Directory.CreateDirectory(imageDirectory);  // Create directory if it does not exist
+            }
+
+            string fileName = Path.GetFileName(customer_image.FileName);
+            string filePath = Path.Combine(imageDirectory, fileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                customer_image.CopyTo(fileStream);
+            }
+
+            // Update the customer's image path in the database
+            existingCustomer.customer_image = fileName;
+            _context.tbl_customer.Update(existingCustomer);
             _context.SaveChanges();
 
-            return RedirectToAction("customerProfile");
+            return RedirectToAction("CustomerProfile");  // Redirect back to the customer profile page
         }
+
 
         /*        public IActionResult changeProfileImage(int customer_id, IFormFile customer_image)
                 {
@@ -185,20 +231,25 @@ namespace ECommerce_Website.Controllers
                 
             }
         }
+
         public IActionResult fetchCart()
         {
             string customerId = HttpContext.Session.GetString("customerSession");
-            if(customerId!=null)
+            if (customerId != null)
             {
-                var cart = _context.tbl_cart.Where(c => c.cust_id == int.Parse(customerId)).Include(c => c.products).ToList();
+                var cart = _context.tbl_cart
+                    .Where(c => c.cust_id == int.Parse(customerId) && !c.is_checked_out) // Filter out checked-out items
+                    .Include(c => c.products)
+                    .ToList();
+
                 return View(cart);
             }
             else
             {
                 return RedirectToAction("customerLogin");
             }
-
         }
+
         public IActionResult removeProduct(int id)
         {
             var product = _context.tbl_cart.Find(id);
@@ -229,7 +280,7 @@ namespace ECommerce_Website.Controllers
 
 
         [HttpPost]
-        public IActionResult ConfirmCheckout(int cart_id, string paymentMethod)
+        public IActionResult ConfirmCheckout(int cart_id)
         {
             // Retrieve the cart item
             var cartItem = _context.tbl_cart
@@ -253,18 +304,78 @@ namespace ECommerce_Website.Controllers
             _context.tbl_order.Add(order);
             _context.SaveChanges();
 
-            // Confirmation message and payment details
-            TempData["Message"] = "Your checkout has been successfully confirmed!";
-            TempData["PaymentMethod"] = paymentMethod == "COD"
-                ? "You have chosen Cash on Delivery as your payment method. Our delivery team will contact you soon."
-                : "You have selected Online Payment. Please complete the payment process.";
+            // Mark the cart item as checked out
+            cartItem.is_checked_out = true; // Set is_checked_out to true
+            _context.SaveChanges();
 
-            return View();
+            // Confirmation message
+            TempData["Message"] = "Your checkout has been successfully confirmed!";
+
+            return RedirectToAction("UserOrderHistory"); // Redirect to order history
         }
+
+
+
+
+        /*
+                [HttpPost]
+                public IActionResult ConfirmCheckout(int cart_id)
+                {
+                    // Retrieve the cart item
+                    var cartItem = _context.tbl_cart
+                        .Include(c => c.products)
+                        .Include(c => c.customers)
+                        .FirstOrDefault(c => c.cart_id == cart_id);
+
+                    if (cartItem == null)
+                    {
+                        return NotFound("Cart item not found.");
+                    }
+
+                    // Create an order for the cart item
+                    var order = new Order
+                    {
+                        cart_id = cartItem.cart_id,
+                        order_status = 0, // Pending
+
+                    };
+
+                    // Add the order to the database
+                    _context.tbl_order.Add(order);
+                    _context.SaveChanges();
+
+                    // Confirmation message
+                    TempData["Message"] = "Your checkout has been successfully confirmed!";
+
+                    return RedirectToAction("UserOrderHistory"); // Redirect to order history
+                }*/
+
+
+
 
         public IActionResult onlinePayment()
         {
             return View();
+        }
+
+        public IActionResult UserOrderHistory()
+        {
+            string customerId = HttpContext.Session.GetString("customerSession");
+            if (customerId != null)
+            {
+                // Fetch orders related to the logged-in customer
+                var orders = _context.tbl_order
+                    .Include(o => o.cart) // Assuming tbl_order is linked to tbl_cart
+                    .ThenInclude(c => c.products) // Assuming tbl_cart has a relationship with products
+                    .Where(o => o.cart.cust_id == int.Parse(customerId))
+                    .ToList();
+
+                return View(orders);
+            }
+            else
+            {
+                return RedirectToAction("customerLogin");
+            }
         }
 
     }
