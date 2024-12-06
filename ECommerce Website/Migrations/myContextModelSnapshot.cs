@@ -47,7 +47,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasKey("admin_id");
 
-                    b.ToTable("tbl_admin");
+                    b.ToTable("tbl_admin", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Cart", b =>
@@ -79,7 +79,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasIndex("prod_id");
 
-                    b.ToTable("tbl_cart");
+                    b.ToTable("tbl_cart", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Category", b =>
@@ -96,7 +96,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasKey("category_id");
 
-                    b.ToTable("tbl_category");
+                    b.ToTable("tbl_category", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Customer", b =>
@@ -139,7 +139,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasKey("customer_id");
 
-                    b.ToTable("tbl_customer");
+                    b.ToTable("tbl_customer", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Faqs", b =>
@@ -160,7 +160,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasKey("faq_id");
 
-                    b.ToTable("tbl_faqs");
+                    b.ToTable("tbl_faqs", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Feedback", b =>
@@ -181,7 +181,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasKey("feedback_id");
 
-                    b.ToTable("tbl_feedback");
+                    b.ToTable("tbl_feedback", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Order", b =>
@@ -202,7 +202,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasIndex("cart_id");
 
-                    b.ToTable("tbl_order");
+                    b.ToTable("tbl_order", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Product", b =>
@@ -236,7 +236,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasIndex("cat_id");
 
-                    b.ToTable("tbl_product");
+                    b.ToTable("tbl_product", (string)null);
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Cart", b =>

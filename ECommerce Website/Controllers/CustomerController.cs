@@ -86,6 +86,7 @@ namespace ECommerce_Website.Controllers
                 ViewData["category"] = category;
                 var customerId = HttpContext.Session.GetString("customerSession");
                 var row = _context.tbl_customer.Where(c => c.customer_id == int.Parse(customerId)).ToList();
+                ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
                 return View(row);
 
             }
@@ -95,6 +96,7 @@ namespace ECommerce_Website.Controllers
         {
             _context.tbl_customer.Update(customer);
             _context.SaveChanges();
+  
             return RedirectToAction("customerProfile");
         }
         /*        public IActionResult changeProfileImage(Customer customer, IFormFile customer_image)
@@ -180,7 +182,7 @@ namespace ECommerce_Website.Controllers
                 }*/
         public IActionResult feedback()
         {
-
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View();
         }
         [HttpPost]
@@ -199,7 +201,7 @@ namespace ECommerce_Website.Controllers
 
             List<Product> products = _context.tbl_product.ToList();
             ViewData["product"] = products;
-
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View();
         }
         public IActionResult productDetails(int id)
@@ -208,6 +210,7 @@ namespace ECommerce_Website.Controllers
                            ViewData["category"] = category;*/
 
             var products = _context.tbl_product.Where(p => p.product_id == id).ToList();
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View(products);
         }
 
@@ -241,7 +244,7 @@ namespace ECommerce_Website.Controllers
                     .Where(c => c.cust_id == int.Parse(customerId) && !c.is_checked_out) // Filter out checked-out items
                     .Include(c => c.products)
                     .ToList();
-
+                ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
                 return View(cart);
             }
             else
@@ -275,6 +278,7 @@ namespace ECommerce_Website.Controllers
             }
 
             // Pass the cart item to the view
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View(cartItem);
         }
 
@@ -310,6 +314,7 @@ namespace ECommerce_Website.Controllers
 
             // Confirmation message
             TempData["Message"] = "Your checkout has been successfully confirmed!";
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
 
             return RedirectToAction("UserOrderHistory"); // Redirect to order history
         }
@@ -355,6 +360,7 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult onlinePayment()
         {
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View();
         }
 
@@ -369,7 +375,7 @@ namespace ECommerce_Website.Controllers
                     .ThenInclude(c => c.products) // Assuming tbl_cart has a relationship with products
                     .Where(o => o.cart.cust_id == int.Parse(customerId))
                     .ToList();
-
+                ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
                 return View(orders);
             }
             else
