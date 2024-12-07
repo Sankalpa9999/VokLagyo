@@ -13,11 +13,11 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-info">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="">Shopping Cart</a>
+        <a class="navbar-brand ps-3 fw-bold text-dark" href="">Vok Lagyo</a>
         <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-dark" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
@@ -26,7 +26,7 @@
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="@Url.Action("Profile","Admin")">Profile</a></li>
                     <li><hr class="dropdown-divider" /></li>
@@ -40,37 +40,37 @@
             <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                        <a class="nav-link" href="@Url.Action("Index","Admin")">
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-home"></i></div>
                             Home
                         </a>
                         <a class="nav-link" href="@Url.Action("Profile","Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-user"></i></div>
                             Profile
                         </a>
 
                         <a class="nav-link" href="@Url.Action("fetchCustomer","Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-users"></i></div>
                             Customer
                         </a>
                         <a class="nav-link" href="@Url.Action("fetchCategory","Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-list"></i></div>
                             Category
                         </a>
                         <a class="nav-link" href="@Url.Action("fetchProduct","Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-basket"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-shopping-basket"></i></div>
                             Products
                         </a>
                         <a class="nav-link" href="@Url.Action("fetchCart", "Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-shopping-cart"></i></div>
                             Cart
                         </a>
                         <a class="nav-link" href="@Url.Action("ViewOrders","Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-money-check"></i></div>
                             Orders
                         </a>
                         <a class="nav-link" href="@Url.Action("fetchFeedback","Admin")">
-                            <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
+                            <div class="sb-nav-link-icon text-dark"><i class="fas fa-money-check"></i></div>
                             Feedback
                         </a>
                     </div>

@@ -13,6 +13,8 @@ namespace ECommerce_Website.Models
         public int cart_status { get; set; }
         public bool is_checked_out { get; set; }
 
+        public virtual Order order { get; set; }
+
         [ForeignKey("prod_id")]
         public Product products { get; set; }
 

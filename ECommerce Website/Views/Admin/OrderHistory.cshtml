@@ -3,10 +3,8 @@
 @{
     ViewData["Title"] = "Order History";
 }
-
 <div class="container">
     <h3 class="text-center my-3">Order History</h3>
-
     <table class="table">
         <thead>
             <tr>
@@ -15,7 +13,7 @@
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                @*                 <th>Completed On</th> *@
+                <th>Rating</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +25,16 @@
                     <td>@cart.products.product_name</td>
                     <td>@cart.product_quantity</td>
                     <td>@cart.products.product_price</td>
-                    @* <td>@cart.updated_at.ToString("yyyy-MM-dd HH:mm:ss")</td> <!-- Assuming updated_at stores the completion date --> *@
+                    <td>
+                        @if (cart.order?.rating.HasValue == true)
+                        {
+                            <span>@cart.order.rating</span>
+                        }
+                        else
+                        {
+                            <span>Not Rated</span>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>

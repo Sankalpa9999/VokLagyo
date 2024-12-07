@@ -11048,8 +11048,8 @@ body {
 }
 
 .sb-sidenav-light {
-  background-color: #f8f9fa;
-  color: #212529;
+    background-color: #f8f9fa;
+    color: #212529;
 }
 .sb-sidenav-light .sb-sidenav-menu .sb-sidenav-menu-heading {
   color: #adb5bd;

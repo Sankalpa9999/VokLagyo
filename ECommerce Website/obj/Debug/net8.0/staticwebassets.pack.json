@@ -93,6 +93,10 @@
       "PackagePath": "staticwebassets\\customer_images\\Screenshot 2024-04-03 214127.png"
     },
     {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\Screenshot 2024-05-22 221627.png",
+      "PackagePath": "staticwebassets\\customer_images\\Screenshot 2024-05-22 221627.png"
+    },
+    {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\customer_images\\Screenshot 2024-11-16 205522.png",
       "PackagePath": "staticwebassets\\customer_images\\Screenshot 2024-11-16 205522.png"
     },
@@ -963,6 +967,14 @@
     {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenmomo.jpg",
       "PackagePath": "staticwebassets\\product_images\\chickenmomo.jpg"
+    },
+    {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenrice.jpg",
+      "PackagePath": "staticwebassets\\product_images\\chickenrice.jpg"
+    },
+    {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenthuppa.jpg",
+      "PackagePath": "staticwebassets\\product_images\\chickenthuppa.jpg"
     },
     {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\lashi.jpg",

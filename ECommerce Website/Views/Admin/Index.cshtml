@@ -1,3 +1,159 @@
-﻿<div class="container-fluid px-4">
-    <h2 class="mt-4 text-center text-uppercase" style="letter-spacing:4px">My Dashboard</h2>
-</div>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f5f7;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card h5 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, Admin! Manage your data efficiently.</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="row mb-4">
+            <!-- Dashboard Cards -->
+            <div class="col-md-3">
+                <div class="card bg-primary text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5>Customers</h5>
+                        <p class="card-text fs-3" id="customerCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5>Orders</h5>
+                        <p class="card-text fs-3" id="orderCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5>Products</h5>
+                        <p class="card-text fs-3" id="productCount">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white mb-3">
+                    <div class="card-body text-center">
+                        <h5>Feedback</h5>
+                        <p class="card-text fs-3" id="feedbackCount">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow mb-3">
+                    <div class="card-body">
+                        <h5>Orders Overview</h5>
+                        <div class="chart-container">
+                            <canvas id="ordersChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Mock Data
+        const data = {
+            customers: 125,
+            orders: 54,
+            products: 320,
+            feedbacks: 87,
+            ordersByMonth: [12, 15, 8, 20, 25, 18]
+        };
+
+        // Update Dashboard Numbers
+        document.getElementById('customerCount').innerText = data.customers;
+        document.getElementById('orderCount').innerText = data.orders;
+        document.getElementById('productCount').innerText = data.products;
+        document.getElementById('feedbackCount').innerText = data.feedbacks;
+
+        // Chart.js Orders Overview
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Orders',
+                    data: data.ordersByMonth,
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'Months' } },
+                    y: { title: { display: true, text: 'Orders' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

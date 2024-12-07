@@ -4,6 +4,7 @@ using ECommerce_Website.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerce_Website.Migrations
 {
     [DbContext(typeof(myContext))]
-    partial class myContextModelSnapshot : ModelSnapshot
+    [Migration("20241207080040_rating")]
+    partial class rating
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,8 +207,7 @@ namespace ECommerce_Website.Migrations
 
                     b.HasKey("order_id");
 
-                    b.HasIndex("cart_id")
-                        .IsUnique();
+                    b.HasIndex("cart_id");
 
                     b.ToTable("tbl_order");
                 });
@@ -266,8 +268,8 @@ namespace ECommerce_Website.Migrations
             modelBuilder.Entity("ECommerce_Website.Models.Order", b =>
                 {
                     b.HasOne("ECommerce_Website.Models.Cart", "cart")
-                        .WithOne("order")
-                        .HasForeignKey("ECommerce_Website.Models.Order", "cart_id")
+                        .WithMany()
+                        .HasForeignKey("cart_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -283,12 +285,6 @@ namespace ECommerce_Website.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("ECommerce_Website.Models.Cart", b =>
-                {
-                    b.Navigation("order")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ECommerce_Website.Models.Category", b =>

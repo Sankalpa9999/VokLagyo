@@ -20,6 +20,7 @@ namespace ECommerce_Website.Controllers
             if (
                 admin_session != null)
             {
+
                 return View();
             }
             else
@@ -430,9 +431,15 @@ namespace ECommerce_Website.Controllers
 
         public IActionResult fetchcart()
         {
-            var cart = _context.tbl_cart.Include(c => c.products).Include(c => c.customers).ToList();
+            var cart = _context.tbl_cart
+                .Include(c => c.products)  // Include related products
+                .Include(c => c.customers) // Include related customers
+                .Include(c => c.order)     // Include related orders (for ratings)
+                .ToList();
+
             return View(cart);
         }
+
         public ActionResult deletePermissionCart(int id)
         {
             return View(_context.tbl_cart.FirstOrDefault(c => c.cart_id == id));
@@ -515,13 +522,16 @@ namespace ECommerce_Website.Controllers
         {
             // Retrieve completed carts and their related details
             var completedOrders = _context.tbl_cart
-                .Include(c => c.products)
-                .Include(c => c.customers)
+                .Include(c => c.products) // Include product details
+                .Include(c => c.customers) // Include customer details
+                .Include(c => c.order) // Include order details
                 .Where(c => c.cart_status == 1) // Only fetch completed carts
                 .ToList();
 
             return View(completedOrders);
         }
+
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ECommerce_Website.Migrations;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce_Website.Models
 {
@@ -17,6 +18,7 @@ namespace ECommerce_Website.Models
         public DbSet<Faqs> tbl_faqs {  get; set; }
 
         public DbSet<Order> tbl_order { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

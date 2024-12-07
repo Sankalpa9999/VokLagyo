@@ -364,17 +364,19 @@ namespace ECommerce_Website.Controllers
             return View();
         }
 
+
+
         public IActionResult UserOrderHistory()
         {
             string customerId = HttpContext.Session.GetString("customerSession");
             if (customerId != null)
             {
-                // Fetch orders related to the logged-in customer
                 var orders = _context.tbl_order
                     .Include(o => o.cart) // Assuming tbl_order is linked to tbl_cart
                     .ThenInclude(c => c.products) // Assuming tbl_cart has a relationship with products
                     .Where(o => o.cart.cust_id == int.Parse(customerId))
                     .ToList();
+
                 ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
                 return View(orders);
             }
@@ -383,6 +385,36 @@ namespace ECommerce_Website.Controllers
                 return RedirectToAction("customerLogin");
             }
         }
+
+        [HttpPost]
+        public IActionResult RateOrder(int orderId, int rating)
+        {
+            var order = _context.tbl_order.FirstOrDefault(o => o.order_id == orderId);
+            if (order != null)
+            {
+                order.rating = rating;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("UserOrderHistory");
+        }
+
+        public IActionResult SubmitRating(int cartId, int rating)
+        {
+            var cart = _context.tbl_cart.Include(c => c.order).FirstOrDefault(c => c.cart_id == cartId);
+            if (cart != null && cart.order != null)
+            {
+                cart.order.rating = rating; // Update the rating
+                _context.SaveChanges(); // Save the changes to the database
+                return RedirectToAction("fetchcart"); // Redirect to the cart page
+            }
+            else
+            {
+                // Handle cases where the cart or order does not exist
+                return NotFound(); // Or show an error message to the user
+            }
+        }
+
+
 
     }
 
