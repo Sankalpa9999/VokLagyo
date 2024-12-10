@@ -3,25 +3,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 100vh;">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success w-50">
+            @TempData["Message"]
+        </div>
+        <a href="@Url.Action("UserOrderHistory", "customer")" class="btn btn-info py-2 px-3">Order History</a>
+    }
 
+    @if (TempData["PaymentMethod"] != null)
+    {
+        <div class="alert alert-info w-50">
+            @TempData["PaymentMethod"]
+        </div>
+        
+    }
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["Message"]
-    </div>
-}
-
-@if (TempData["PaymentMethod"] != null)
-{
-    <div class="alert alert-info">
-        @TempData["PaymentMethod"]
-    </div>
-}
-
-<h2>Thank you for your order!</h2>
-
-
-
-
-
+    <h2 class="mt-3">Thank you for your order!</h2>
+</div>

@@ -969,6 +969,10 @@
       "PackagePath": "staticwebassets\\product_images\\chickenmomo.jpg"
     },
     {
+      "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenpizza.webp",
+      "PackagePath": "staticwebassets\\product_images\\chickenpizza.webp"
+    },
+    {
       "Id": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenrice.jpg",
       "PackagePath": "staticwebassets\\product_images\\chickenrice.jpg"
     },

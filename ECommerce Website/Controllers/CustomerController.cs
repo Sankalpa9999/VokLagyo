@@ -313,10 +313,11 @@ namespace ECommerce_Website.Controllers
             _context.SaveChanges();
 
             // Confirmation message
-            TempData["Message"] = "Your checkout has been successfully confirmed!";
+            TempData["Message"] = "Your checkout has been successfully confirmed! Our team will contact you within 5 minutes on your provided contact number to confirm the details and assist you further.";
             ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
 
-            return RedirectToAction("UserOrderHistory"); // Redirect to order history
+            /*return RedirectToAction("UserOrderHistory");*/ // Redirect to order history
+            return View();
         }
 
 

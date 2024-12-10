@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "osGPwu5uRXfkOp2ONc/yG3RHLCymvrwkM3D+JsFjjp8=",
+  "Hash": "OhEwYMN3pNZXefpmLM4Ssn6VEZ2pEsePV+s02eUnBKU=",
   "Source": "ECommerce Website",
   "BasePath": "_content/ECommerce Website",
   "Mode": "Default",
@@ -4461,6 +4461,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\product_images\\chickenmomo.jpg"
+    },
+    {
+      "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenpizza.webp",
+      "SourceId": "ECommerce Website",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\",
+      "BasePath": "_content/ECommerce Website",
+      "RelativePath": "product_images/chickenpizza.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\product_images\\chickenpizza.webp"
     },
     {
       "Identity": "D:\\.net\\ECommerce Website\\ECommerce Website\\wwwroot\\product_images\\chickenrice.jpg",

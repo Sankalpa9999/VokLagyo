@@ -7,12 +7,12 @@
 <div class="container">
     <h3 class="text-center my-3">Pending Orders</h3>
 
-    @if (TempData["Message"] != null)
+@*     @if (TempData["Message"] != null)
     {
         <div class="alert alert-success">
             @TempData["Message"]
         </div>
-    }
+    } *@
     <a href="@Url.Action("OrderHistory", "Admin")" class="btn btn-info btn-sm">Order History</a>
     <div class="table-responsive">
     <table class="table">
